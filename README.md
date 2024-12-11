@@ -64,3 +64,4 @@ The **Tibia Items Editor** is a Python-based GUI application designed for managi
    - Search for items by name.
    - Edit attributes of selected items.
    - Save changes to a new XML file.
+   Project by Jakub Polewka 
