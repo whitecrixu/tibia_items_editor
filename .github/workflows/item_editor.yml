@@ -32,9 +32,9 @@ jobs:
       - name: Lint with flake8
         run: |
           pip install flake8
-          flake8 items/item_search_tool.py
+          flake8 item_search_tool.py
 
-      - name: Run unit tests
+      - name: Run tests
         run: |
           python -m unittest discover tests
 
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build application
         run: |
-          pyinstaller --onefile items/item_search_tool.py
+          pyinstaller --onefile item_search_tool.py
           ls dist/
 
       - name: Upload build artifact
