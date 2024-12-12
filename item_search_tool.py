@@ -24,7 +24,9 @@ def load_language_file():
         with open(lang_file, "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
-        messagebox.showerror("Error", "Language file not found. Defaulting to English.")
+        messagebox.showerror(
+            "Error", "Language file not found. Defaulting to English."
+        )
         with open("lang/lang_en.json", "r", encoding="utf-8") as file:
             return json.load(file)
 
@@ -77,7 +79,9 @@ def display_results(results, tree):
 def search_callback(entry, root, tree):
     """Callback dla przycisku wyszukiwania."""
     if root is None:
-        messagebox.showerror("Error", "No XML file loaded. Please load a file first.")
+        messagebox.showerror(
+            "Error", "No XML file loaded. Please load a file first."
+        )
         return
     query = entry.get().strip()
     results = search_item_by_name(root, query)
@@ -107,7 +111,9 @@ def edit_item_callback(tree, xml_tree, xml_root):
         key = attribute.get('key')
         value = attribute.get('value')
 
-        tk.Label(edit_window, text=key).grid(row=row, column=0, padx=5, pady=5)
+        tk.Label(edit_window, text=key).grid(
+            row=row, column=0, padx=5, pady=5
+        )
         entry = tk.Entry(edit_window, width=30)
         entry.insert(0, value)
         entry.grid(row=row, column=1, padx=5, pady=5)
@@ -123,9 +129,9 @@ def edit_item_callback(tree, xml_tree, xml_root):
         messagebox.showinfo("Info", "Item updated.")
         edit_window.destroy()
 
-    tk.Button(edit_window, text="Save", command=save_changes).grid(
-        row=row, column=0, columnspan=2, pady=10
-    )
+    tk.Button(
+        edit_window, text="Save", command=save_changes
+    ).grid(row=row, column=0, columnspan=2, pady=10)
 
 
 def save_file_callback(xml_tree):
@@ -140,7 +146,9 @@ def save_file_callback(xml_tree):
 
 def load_file_callback():
     """Callback do załadowania pliku XML."""
-    file_path = filedialog.askopenfilename(filetypes=[("XML files", "*.xml")])
+    file_path = filedialog.askopenfilename(
+        filetypes=[("XML files", "*.xml")]
+    )
     if not file_path:
         return None, None
     try:
