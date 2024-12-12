@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 
+
 def load_language_file():
     """Wyświetla okno wyboru języka i ładuje odpowiedni plik językowy."""
     lang_files = {
@@ -27,6 +28,7 @@ def load_language_file():
         with open("lang/lang_en.json", "r", encoding="utf-8") as file:
             return json.load(file)
 
+
 def load_items(file_path):
     """Wczytuje dane z pliku XML."""
     try:
@@ -39,6 +41,7 @@ def load_items(file_path):
     except ET.ParseError:
         messagebox.showerror("Error", "XML file contains errors.")
         exit()
+
 
 def search_item_by_name(root, search_query):
     """Wyszukuje przedmioty zawierające frazę w nazwie."""
@@ -57,6 +60,7 @@ def search_item_by_name(root, search_query):
             })
     return results
 
+
 def display_results(results, tree):
     """Wyświetla wyniki wyszukiwania w interfejsie GUI."""
     for item in tree.get_children():
@@ -69,6 +73,7 @@ def display_results(results, tree):
     else:
         messagebox.showinfo("Info", "No items found.")
 
+
 def search_callback(entry, root, tree):
     """Callback dla przycisku wyszukiwania."""
     if root is None:
@@ -77,6 +82,7 @@ def search_callback(entry, root, tree):
     query = entry.get().strip()
     results = search_item_by_name(root, query)
     display_results(results, tree)
+
 
 def edit_item_callback(tree, xml_tree, xml_root):
     """Edytuje wybrany przedmiot."""
@@ -121,6 +127,7 @@ def edit_item_callback(tree, xml_tree, xml_root):
         row=row, column=0, columnspan=2, pady=10
     )
 
+
 def save_file_callback(xml_tree):
     """Zapisuje zmodyfikowany plik XML."""
     file_path = filedialog.asksaveasfilename(
@@ -129,6 +136,7 @@ def save_file_callback(xml_tree):
     if file_path:
         xml_tree.write(file_path, encoding="utf-8", xml_declaration=True)
         messagebox.showinfo("Info", "File saved successfully.")
+
 
 def load_file_callback():
     """Callback do załadowania pliku XML."""
@@ -143,10 +151,12 @@ def load_file_callback():
         messagebox.showerror("Error", str(e))
         return None, None
 
+
 def on_close(root):
     """Obsługuje zdarzenie zamknięcia okna."""
     if messagebox.askokcancel("Quit", "Do you want to quit?"):
         root.destroy()
+
 
 def create_gui():
     """Tworzy GUI aplikacji."""
@@ -212,6 +222,7 @@ def create_gui():
     file_button.pack(pady=10)
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     create_gui()
