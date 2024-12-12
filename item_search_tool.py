@@ -54,7 +54,8 @@ def search_item_by_name(root, search_query):
             attr.get('key'): attr.get('value')
             for attr in item.findall('attribute')
         }
-        if search_query.lower() in name or search_query.lower() == name:
+        if (search_query.lower() in name or
+                search_query.lower() == name):
             results.append({
                 'id': item.get('id'),
                 'name': item.get('name'),
